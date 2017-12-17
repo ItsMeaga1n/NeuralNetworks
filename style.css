@@ -1,4 +1,23 @@
+.main {
+    text-align: center;
+    border: 3px solid #c3c3c3;
+    align-content: center;
+    margin: auto;
+}
+.main .listaZadan {
+    width: 2000px;
+    display: -webkit-box;
+    margin: auto;
+    white-space: normal;
+
+}
 .taskBox{
-    width: 500px;
-    height: 500px;
+    border: 1px solid #575757;
+    width: 300px;
+    height: 300px;
+    background-color: #c3c3c3
+}
+
+a {
+    display: inline-block;
 }
