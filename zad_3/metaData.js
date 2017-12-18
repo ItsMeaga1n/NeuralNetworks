@@ -2,111 +2,101 @@ var numbers = new Array;
 
 numbers.push(
     [
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: false}, {active: false}, {active: false}, {active: true},
-        {active: true}, {active: false}, {active: false}, {active: false}, {active: true}, 
-        {active: true}, {active: false}, {active: false}, {active: false}, {active: true}, 
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,0,0,
+        1,0,0,1,0,0,
+        1,0,0,1,0,0,
+        1,0,0,1,0,0,
+        1,1,1,1,0,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: false}, {active: true}, {active: false}, {active: false},
-        {active: false}, {active: false}, {active: true}, {active: false}, {active: false},
-        {active: false}, {active: false}, {active: true}, {active: false}, {active: false},
-        {active: false}, {active: false}, {active: true}, {active: false}, {active: false},
-        {active: false}, {active: false}, {active: true}, {active: false}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,0,0,0,0,0,
+        1,0,0,0,0,0,
+        1,0,0,0,0,0,
+        1,0,0,0,0,0,
+        1,0,0,0,0,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: false}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        0,0,0,0,1,0,
+        1,1,1,1,1,0,
+        1,0,0,0,0,0,
+        1,1,1,1,1,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        0,0,0,1,1,0,
+        0,0,1,0,1,0,
+        0,1,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: false}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        1,0,0,0,0,0,
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: false}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        1,0,0,0,0,0,
+        1,1,1,1,1,0,
+        1,0,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        0,0,0,0,1,0,
+        0,0,0,0,1,0,
+        0,0,0,0,1,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        1,0,0,0,1,0,
+        1,1,1,1,1,0,
+        1,0,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,0,0
     ]
 );
 numbers.push(
     [
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: false}, {active: false}, {active: false}, {active: true}, {active: false},
-        {active: false}, {active: true}, {active: true}, {active: true}, {active: false},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},
-        {active: true}, {active: true}, {active: true}, {active: true}, {active: true},{active: true}
+        1,1,1,1,1,0,
+        0,0,0,0,1,0,
+        1,1,1,1,1,0,
+        1,0,0,0,1,0,
+        1,1,1,1,1,0,
+        0,0,0,0,0,0
     ]
 );

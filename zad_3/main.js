@@ -5,7 +5,7 @@ var perceptrons = new Array;
 $(document).ready(function(){ 
     for(var i = 0; i < 36; i++){
         $('.gridContainer').append("<div class='gridBox' id='" + i + "'>");
-        grid.push({active: false});
+        grid.push(0);
     }
 
     for(var i = 0; i < 10; i++){
@@ -14,12 +14,12 @@ $(document).ready(function(){
 
     $('.gridBox').click(function(){
         var currId = $(this).attr('id');
-        if(grid[currId].active){
-            grid[currId].active = false;
+        if(grid[currId]){
+            grid[currId] = 0;
             $(this).removeClass('activeBox');
         }
         else {
-            grid[currId].active = true;
+            grid[currId] = 1;
             $(this).addClass('activeBox');
         }
     });
@@ -62,7 +62,7 @@ $(document).ready(function(){
             if($('#'+i).hasClass('activeBox')){
                 $('#'+i).removeClass('activeBox')
             }
-            grid[i].active = false;
+            grid[i] = 0;
         }
     });
  });

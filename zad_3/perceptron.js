@@ -2,7 +2,7 @@ class Perceptron {
     constructor(number) {
       this.number = number;
       this.weights = randomWeights();
-      this.learningRate = 0.1;
+      this.learningRate = 0.12;
       this.threshold  = 0;
       this.bestLifeTime = 0;
       this.bestClassification = 0;
@@ -36,34 +36,40 @@ class Perceptron {
         //     this.weights = this.pocket.slice(0);
         // }
         let rand = Math.random()
-        let stalauczenia = 0.12;
         var examples = [0,1,2,3,4,5,6,7,8,9];
-        shuffle(examples);
-        for(let i = 5; i < 5000; i++){
-           let nrPrzykladu = examples[i];
+        for(let i = 5; i < 1000; i++){
+            shuffle(examples);
+           let nrPrzykladu = examples[i%10];
            let przyklad = numbers[nrPrzykladu];
+           let fft = [...przyklad];
 
            let wynik = 0;
            if(nrPrzykladu === this.number){
                wynik = 1;
            }
-           console.log(przyklad)
-           let suma = this.count(przyklad);
-           for(let j = 0; j < 72; j++){
-               this.weights[j+1] = this.weights[j+1] + stalauczenia + (wynik - suma);
+           let imag = new Array(36+1).join('0').split('').map(parseFloat);
+           transform(fft, imag)
+           let fftPrzyklad = new Array;
+           for(let i = 0; i < 36; i++){
+                fftPrzyklad.push(Math.pow(Math.pow(fft[i],2) + Math.pow(imag[i], 2),0.5));
            }
-           this.weights[0] = this.weights[0] + stalauczenia * (wynik - suma);
+           przyklad = [...przyklad, ...fftPrzyklad];
+           let suma = this.count(przyklad);
+           for(let j = 0; j < przyklad.length; j++){
+               this.weights[j+1] = this.weights[j+1] + this.learningRate * (wynik - suma);
+           }
+           this.weights[0] = this.weights[0] + this.learningRate * (wynik - suma);
            if(i % 5 === 0){
                let err = 0;
                let spodziewanyWynik;
                for(let j = 0; j < 10; j++){
-                   if(licza === j) {
+                   if(this.number === j) {
                        spodziewanyWynik = 1;
                    }
                    else {
-                    spodziewanyWYnik = 0;
+                    spodziewanyWynik = 0;
                    }
-                   let otrzymanyWynik = licz(Liczba[j]);
+                   let otrzymanyWynik = this.count(numbers[j]);
                    err += (otrzymanyWynik - spodziewanyWynik) * (otrzymanyWynik - spodziewanyWynik);
                }
                if(err < 0.0001){
@@ -96,7 +102,7 @@ class Perceptron {
 
     adjustWeights(err, example){
         for(var i = 0; i < 25; i++){
-            this.weights[i+1] +=  err * example[i].active;
+            this.weights[i+1] +=  err * example[i];
         }
         this.weights[0] += err;
         this.lifeTime = 0;
@@ -104,12 +110,13 @@ class Perceptron {
 
     count(x){
         var sum = 0;
-        for(var i = 0; i < 36; i++){
-            sum += this.weights[i+1] * x[i].active;
+        for(var i = 0; i < 72; i++){
+            sum += this.weights[i+1] * x[i];
         }
         sum += this.weights[0];
-
-        return 1/(1 + Math.exp(-suma));
+        console.log('liczba: '+this.number, 1/(1 + Math.exp(-sum)));
+        
+        return 1/(1 + Math.exp(-sum));
     }
 
     signum(val){
@@ -123,7 +130,14 @@ class Perceptron {
     }
 
     check(){
-        return this.count(grid);
+        let imag = new Array(36+1).join('0').split('').map(parseFloat);
+        let tempGrid = [...grid];
+        transform(tempGrid, imag)
+        let fftPrzyklad = new Array;
+        for(let i = 0; i < 36; i++){
+             fftPrzyklad.push(Math.pow(Math.pow(tempGrid[i],2) + Math.pow(imag[i], 2),0.5));
+        }
+        return this.count(fftPrzyklad);
     }
 }
 
