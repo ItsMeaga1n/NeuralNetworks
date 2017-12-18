@@ -10,28 +10,26 @@ class LinearMachine {
 
     learn(x/*example*/, y, life) {
         let isBlack = this.getValue(x);
-        let shouldBeWhite = (y === 0) ? true : false;
-        if (isBlack != y) {
-            if (isBlack && shouldBeWhite) {
-                for (var i = 1; i < this.neuronForBlack.SIZE; i++) {
-                    this.neuronForWhite.weights[i] -= x[i];
-                    this.neuronForBlack.weights[i] += x[i];
-                }
-                this.neuronForBlack.weights[0] -= 1;
-                this.neuronForWhite.weights[0] += 1;
-            } else if (!isBlack && !shouldBeWhite) {
-                for (var i = 1; i < this.neuronForBlack.SIZE; i++) {
-                    this.neuronForWhite.weights[i] -= x[i];
-                    this.neuronForBlack.weights[i] += x[i];
-                }
-                this.neuronForBlack.weights[0] -= 1;
-                this.neuronForWhite.weights[0] += 1;
-            }
-        }
-        else {
-            life++
-        }
-        return life;
+        if(isBlack != y) {
+			if(y === 1 ) {
+				for(var i = 1; i < this.size; i++) {
+					this.neuronForBlack.weights[i] += x[i-1];
+					this.neuronForWhite.weights[i] -= x[i-1];
+				}
+				this.neuronForBlack.weights[0] += 1;
+				this.neuronForWhite.weights[0] -= 1;
+			} else {
+				for(var i = 1; i < this.size; i++) {
+					this.neuronForBlack.weights[i] -= x[i-1];
+					this.neuronForWhite.weights[i] += x[i-1];
+				}
+				this.neuronForBlack.weights[0] -= 1;
+				this.neuronForWhite.weights[0] += 1;
+			}
+		} else {
+			life++;
+		}
+		return life;
     }
 
     learnMachine(x, index, life) {
@@ -42,9 +40,9 @@ class LinearMachine {
 
     noiseExample(x) {
         let tab = [...x];
-        for (var i = 0; i < 25; i++) {
+        for (var i = 0; i < 10; i++) {
             var idx = Math.floor(Math.random() * 2500);
-            tab[idx] = tab[idx] === 1.0 ? 0.0 : 1.0;
+            tab[idx] = tab[idx] === 1 ? 0 : 1;
         }
         return tab;
     }

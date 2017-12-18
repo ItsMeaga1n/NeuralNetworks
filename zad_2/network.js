@@ -5,31 +5,27 @@ class Network {
 	}
 	
 	learn(learnSet) {
-		let linearMachines = [];
+		let linearMachines = new Array;
 		
 		for(let i = 0; i < 2500; i++) {
 			linearMachines.push(new LinearMachine());
 		}
-		for(let i = 0; i < 10; i++) {
+		for(let i = 0; i < 300; i++) {
 			console.log(learnSet, i)
 			var life = 0;
 			for(let j = 0; j < 2500; j++) {
 				life = linearMachines[j].learnMachine(learnSet, j, life);
 			}
 			if(life > this.life) {
-				console.log('life!')
 				this.life = life;
-				this.linearMachines = [];
-				for(var j = 0; j < 2500; j++) {
-					this.linearMachines.push(linearMachines[j]);
-				}
+				this.linearMachines = [...linearMachines];
 			}
 		}
 	}
 		
 	perceive(grid) {
-		var result = [];
-		for(var i = 0; i < 2500; i++) {
+		let result = new Array;
+		for(let i = 0; i < 2500; i++) {
 			result.push(this.linearMachines[i].getValue(grid));
 		}	
 		return result;
