@@ -44,7 +44,7 @@ class Perceptron {
         // }
         let rand = Math.random()
         var examples = [0,1,2,3,4,5,6,7,8,9];
-        for(let i = 5; i < 100; i++){
+        for(let i = 5; i < 5000; i++){
             shuffle(examples);
            let nrPrzykladu = examples[i%10];
            let przyklad = this.getPrzyklad(nrPrzykladu);
@@ -54,7 +54,7 @@ class Perceptron {
            }
            let suma = this.count(przyklad);
            for(let j = 0; j < przyklad.length; j++){
-               this.weights[j+1] = this.weights[j+1] + this.learningRate * (wynik - suma);
+               this.weights[j+1] = this.weights[j+1] + this.learningRate * (wynik - suma) * przyklad[j];
            }
            this.weights[0] = this.weights[0] + this.learningRate * (wynik - suma);
             if(i % 5 === 0){
@@ -113,7 +113,6 @@ class Perceptron {
         }
         sum += this.weights[0];
         let result = 1/(1 + Math.exp(-sum));
-        console.log('adeline '+this.number, sum, x, result)
         return result;
     }
 
@@ -135,7 +134,6 @@ class Perceptron {
         for(let i = 0; i < 36; i++){
              fftPrzyklad.push(Math.pow(Math.pow(tempGrid[i],2) + Math.pow(imag[i], 2),0.5));
         }
-        console.log(this.count([...grid, ...fftPrzyklad]))
         return this.count([...grid, ...fftPrzyklad]);
     }
 }

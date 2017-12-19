@@ -31,7 +31,7 @@ $(document).ready(function(){
         else {
             var results = new Array;
             for(var i = 0; i < 10; i++){
-                if(perceptrons[i].check() === 1){
+                if(perceptrons[i].check() > 0.25 /*Threashold when propability is enough to acquire number*/){
                     results.push(i);
                 }
             }
@@ -58,7 +58,7 @@ $(document).ready(function(){
     });
 
     $('.clearButton').click(function(){
-        for(var i = 0; i < 25; i++){
+        for(var i = 0; i < 36; i++){
             if($('#'+i).hasClass('activeBox')){
                 $('#'+i).removeClass('activeBox')
             }
