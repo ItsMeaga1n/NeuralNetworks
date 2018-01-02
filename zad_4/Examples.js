@@ -6,8 +6,8 @@ class Examples{
         for(let i = 0; i < this.numberOfExamples; i++){
             let alpha = Math.random() * 180;
             let beta = Math.random() * 180;
-            tempoint = this.Move(this.center, alpha);
-            examplepoint = this.Move(tempoint, alpha + beta - 180);
+            let tempoint = this.Move(this.center, alpha);
+            let examplepoint = this.Move(tempoint, alpha + beta - 180);
         }
     }
 
