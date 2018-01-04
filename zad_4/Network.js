@@ -8,11 +8,11 @@ class Network {
         // }
         this.inputLength = newInputLength;
         this.outputLength = newOutputLength;
-        this.initLayers()
+        this.InitLayers()
     }
 
     InitLayers() {
-        this.inLayer = new Layer(this._inputLength, null, this._inputLength);
+        this.inLayer = new Layer(this.inputLength, null, this.inputLength);
         let hidden = new Layer(5, this.inLayer);
         let hidden1 = new Layer(8, hidden);
         let hidden2 = new Layer(5, hidden1);
@@ -21,7 +21,7 @@ class Network {
 
     Learn(input, output) {
         this.inLayer.values = input;
-        this.inLayer.next.CalcForward(input);
+        this.inLayer.nextLayer.CalcForward(input);
 
         let errors = new Array(output.length);
         for (let i = 0; i < output.length; i++) {
@@ -29,13 +29,14 @@ class Network {
         }
 
         this.outLayer.CalcBackwardOutput(errors);
+        console.log(this.outLayer)
 
         return {
-            Errors = errors,
-            Input = input,
-            Output = output,
-            Values = this.outLayer.Values,
-            Weights = GetWeights()
+            Errors: errors,
+            Input: input,
+            Output: output,
+            Values: this.outLayer.values,
+            Weights: this.GetWeights()
         };
     }
 

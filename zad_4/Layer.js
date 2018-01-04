@@ -3,7 +3,7 @@ class Layer {
         this.neuronCount = newNeuronCount;
         this.learningRate = 0.2;
         if(newPrevLayer){
-            this.prevLayer = newPrevLayer;
+            this.setPrev(newPrevLayer);
             this.initRandomWeights(this.neuronCount, this.prevLayer.neuronCount);
         }
         else if(newPrevLayerCount){
@@ -18,6 +18,16 @@ class Layer {
 
     }
 
+    setNext(value){
+        value.prevLayer = this;
+        this.nextLayer = value;
+    }
+
+    setPrev(value){
+        this.prevLayer = value;
+        value.nextLayer = this;
+    }
+
     initRandomWeights(neuronCount, prevNeuronCount) {
         this.weights = new Array;
         for (let i = 0; i < prevNeuronCount; i++) {
@@ -28,7 +38,7 @@ class Layer {
         }
     }
 
-    calcForward(input) {
+    CalcForward(input) {
         this.sums = new Array(this.neuronCount);
         this.values = new Array(this.neuronCount);
 
@@ -39,16 +49,16 @@ class Layer {
             for (let j = 0; j < this.prevLayer.neuronCount; j++) {
                 this.sums[i] += this.weights[j][i] * this.prevLayer.values[j];
             }
-            this.values[i] = this.sigmoid(this.sum[i])
+            this.values[i] = this.sigmoid(this.sums[i])
         }
 
-        if (this.next) {
-            thix.next.calcForward(this.values);
+        if (this.nextLayer) {
+            this.nextLayer.CalcForward(this.values);
         }
     }
 
     sigmoidD(d) {
-        let sig = this.sigmoidD(d);
+        let sig = this.sigmoid(d);
         return sig * (1 - sig);
     }
 
@@ -58,7 +68,7 @@ class Layer {
     CalcBackwardOutput(errors) {
         let delta = new Array(this.neuronCount);
         for (let i = 0; i < this.neuronCount; i++) {
-            delta[i] = errors[i] * SigmoidD(this.sums[i]);
+            delta[i] = errors[i] * this.sigmoidD(this.sums[i]);
         }
         if (this.prevLayer == null) {
             return;
@@ -74,18 +84,18 @@ class Layer {
     }
 
     CalcBackward(deltaIn) {
-        if (this.prev == null) {
+        if (this.prevLayer == null) {
             return;
         }
         let deltaOut = new Array(this.neuronCount);
         let errors = new Array(this.neuronCount);
 
         for (let j = 0; j < this.neuronCount; j++) {
-            for (let l = 0; l < this.next.neuronCount; l++) {
-                errors[j] += this.next.weights[j][l] * deltaIn[l];
+            for (let l = 0; l < this.nextLayer.neuronCount; l++) {
+                errors[j] += this.nextLayer.weights[j][l] * deltaIn[l];
             }
 
-            deltaOut[j] = SigmoidD(this.sums[j]) * errors[j];
+            deltaOut[j] = this.sigmoidD(this.sums[j]) * errors[j];
         }
 
         for (let j = 0; j < this.neuronCount; j++) {
