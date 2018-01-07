@@ -1,6 +1,10 @@
 .mainApp {
-    width: 100%;
+    width: fit-content;
     display: inline-flex;
-    height: 791px;
+    height: 841px;
     border-style: solid;
+}
+
+.image {
+    margin-top: 50px;
 }

@@ -2,7 +2,7 @@ class RobotArm {
     constructor() {
         this.inputLength = 2;
         this.outputLength = 2;
-        this.armLength = 80;
+        this.armLength = 180;
         this.learningRate = 0.2;
         this.attachPoint = new Point(100, 200);
 
@@ -22,7 +22,6 @@ class RobotArm {
                 if (!this.ContainsKey(this.armAnglesCache, destPoint))
                     this.armAnglesCache.push({ destPoint, angles });
             }
-            console.log(i);
         }
     }
 
@@ -47,13 +46,8 @@ class RobotArm {
         return new Point(xnew, ynew);
     }
 
-    GetArmAngles(point) {
-        return this.ContainsKey(this.armAnglesCache, point) ? this.armAnglesCache[point] : [0, 0];
-    }
-
     GetArmPoints(angles) {
-        if (angles[0] >= 0 && angles[0] <= 180 &&
-            angles[1] >= 0 && angles[1] <= 360) {
+
 
             let sinX = this.SinDegree(angles[0]);
             let cosX = this.CosDegree(angles[0]);
@@ -74,9 +68,6 @@ class RobotArm {
             armPoints[1].y += armPoints[0].y;
 
             return armPoints;
-        } else {
-            console.log('error: wrong angles')
-        }
     }
 
     SinDegree(degree) {
@@ -117,9 +108,8 @@ class RobotArm {
     }
 
     Eval(point) {
-        let input = this.normalizationProvider.NormalizeInput([point.X, point.Y]);
-
-        let nnResult = this.neuralNetwork.Eval(input);
+        let input = this.normalizationProvider.NormalizeInput([point.x, point.y]);
+        let nnResult = this.network.Eval(input);
 
         let output = this.normalizationProvider.UnnormalizeOutput(nnResult);
 

@@ -29,7 +29,6 @@ class Network {
         }
 
         this.outLayer.CalcBackwardOutput(errors);
-        console.log(this.outLayer)
 
         return {
             Errors: errors,
@@ -43,17 +42,17 @@ class Network {
     Eval(input)
     {
         this.inLayer.values = input;
-        this.inLayer.next.CalcForward(input);
+        this.inLayer.nextLayer.CalcForward(input);
 
         return [...this.outLayer.values];
     }
 
     GetWeights(){
         let tmpWeights = new Array;
-        let tmpLayer = this.inLayer.next;
+        let tmpLayer = this.inLayer.nextLayer;
         while(tmpLayer){
             tmpWeights.push(tmpLayer.CloneWeights());
-            tmpLayer = tmpLayer.next;
+            tmpLayer = tmpLayer.nextLayer;
         }
         return tmpWeights;
     }
@@ -64,7 +63,7 @@ class Network {
         result.outLayer = this.outLayer.Clone();
 
         let clonePrevLayer = this.inLayer;
-        let layer = this.inLayer.Next;
+        let layer = this.inLayer.nextLayer;
 
         while (layer !== null)
         {
@@ -72,7 +71,7 @@ class Network {
             cloneLayer.Prev = clonePrevLayer;
 
             clonePrevLayer = cloneLayer;
-            layer = layer.Next;
+            layer = layer.nextLayer;
         }
 
         this.outLayer.Prev = clonePrevLayer;

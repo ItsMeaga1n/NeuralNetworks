@@ -3,21 +3,21 @@ class RobotArmNormalizationProvider {
     constructor(newinputLength, newoutputLength) {
         this.inputLength = newinputLength;
         this.outputLength = newoutputLength;
-        this.armLength = 80;
+        this.armLength = 180;
     }
 
 
     NormalizeOutput(values) {
-        if (values.length !== this.outputLength) {
-            console.error('error - values length not equal outputlength');
-            return;
-        }
+        // if (values.length !== this.outputLength) {
+        //     console.error('error - values length not equal outputlength');
+        //     return;
+        // }
 
-        if (!(values[0] >= 0 && values[0] <= 180 &&
-            values[1] >= 0 && values[1] <= 360)) {
-            console.error('error - values not correctt');
-            return;
-        }
+        // if (!(values[0] >= 0 && values[0] <= 180 &&
+        //     values[1] >= 0 && values[1] <= 360)) {
+        //     console.error('error - values not correctt');
+        //     return;
+        // }
 
         let result = new Array(this.outputLength);
 
@@ -27,11 +27,11 @@ class RobotArmNormalizationProvider {
         result[0] = (result[0] * 0.8) + 0.1;
         result[1] = (result[1] * 0.8) + 0.1;
 
-        if (!(result[0] >= 0.1 && result[0] <= 0.9 &&
-            result[1] >= 0.1 && result[1] <= 0.9)) {
-            console.error('error - result not correctt');
-            return;
-        }
+        // if (!(result[0] >= 0.1 && result[0] <= 0.9 &&
+        //     result[1] >= 0.1 && result[1] <= 0.9)) {
+        //     console.error('error - result not correctt');
+        //     return;
+        // }
 
         return result;
     }
@@ -66,7 +66,6 @@ class RobotArmNormalizationProvider {
 
         result[0] = (result[0] * 0.8) + 0.1;
         result[1] = (result[1] * 0.8) + 0.1;
-        console.log(values, result)
         //Debug.Assert(result[0] >= 0.1 && result[0] <= 0.9);
         //Debug.Assert(result[1] >= 0.1 && result[1] <= 0.9);
 
