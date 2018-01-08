@@ -8,6 +8,7 @@ class Perceptron {
       this.bestClassification = 0;
       this.lifeTime = 0;
       this.pocket = null;
+      this.daneWykres = new Array;
     }
 
     getPrzyklad(nrPrzykladu){
@@ -70,6 +71,7 @@ class Perceptron {
                     let otrzymanyWynik = this.count(this.getPrzyklad(j));
                     err += (otrzymanyWynik - spodziewanyWynik) * (otrzymanyWynik - spodziewanyWynik);
                 }
+                this.daneWykres.push(err);
                 if(err < 0.0001){
                     break;
                 }
