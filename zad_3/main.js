@@ -1,12 +1,16 @@
 var grid = new Array;
 var learned = false;
 var perceptrons = new Array;
+var ctx;
 
 $(document).ready(function(){ 
     for(var i = 0; i < 36; i++){
         $('.gridContainer').append("<div class='gridBox' id='" + i + "'>");
         grid.push(0);
     }
+
+    ctx  = document.getElementById("myChart").getContext('2d');
+    
 
     for(var i = 0; i < 10; i++){
         perceptrons.push(new Perceptron(i));
@@ -49,12 +53,86 @@ $(document).ready(function(){
     });
 
     $('.learnButton').click(function(){
-        $('.resultText').replaceWith("<p class='resultText'>Learning.. .</p>");                
+        $('.resultText').replaceWith("<p class='resultText'>Learning.. .</p>");   
+        let maxIndex = 0;             
         for(var i = 0; i < 10; i++){
             perceptrons[i].learn();
+            console.log(perceptrons[i].daneWykres)
+            if(maxIndex < perceptrons[i].daneWykres.length){
+                maxIndex = perceptrons[i].daneWykres.length;
+            }
         }
+        let labelsArray = new Array;
+        for(let i = 0; i < maxIndex; i++){
+            labelsArray.push(i*5);
+        }
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labelsArray,
+              datasets: [{ 
+                  data: perceptrons[0].daneWykres,
+                  label: "Zero",
+                  borderColor: "#3e95cd",
+                  fill: false
+                }, { 
+                  data: perceptrons[1].daneWykres,
+                  label: "One",
+                  borderColor: "#8e5ea2",
+                  fill: false
+                }, { 
+                  data: perceptrons[2].daneWykres,
+                  label: "Two",
+                  borderColor: "#3cba9f",
+                  fill: false
+                }, { 
+                  data: perceptrons[3].daneWykres,
+                  label: "Three",
+                  borderColor: "#e8c3b9",
+                  fill: false
+                }, { 
+                  data: perceptrons[4].daneWykres,
+                  label: "Four",
+                  borderColor: "#c45850",
+                  fill: false
+                }, { 
+                    data: perceptrons[5].daneWykres,
+                    label: "Five",
+                    borderColor: "#a45850",
+                    fill: false
+                  }, { 
+                    data: perceptrons[6].daneWykres,
+                    label: "Six",
+                    borderColor: "#b45850",
+                    fill: false
+                  }, { 
+                    data: perceptrons[7].daneWykres,
+                    label: "Seven",
+                    borderColor: "#d45850",
+                    fill: false
+                  }, { 
+                    data: perceptrons[8].daneWykres,
+                    label: "Eight",
+                    borderColor: "#123456",
+                    fill: false
+                  }, { 
+                    data: perceptrons[9].daneWykres,
+                    label: "Nine",
+                    borderColor: "#666666",
+                    fill: false
+                  }
+              ]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'Errors'
+              }
+            }
+          });
         $('.resultText').replaceWith("<p class='resultText'>Learning complete!</p>");
         learned = true;
+
     });
 
     $('.clearButton').click(function(){
