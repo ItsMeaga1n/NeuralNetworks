@@ -1,0 +1,11 @@
+.noMargin {
+    margin: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    vertical-align: top;
+}
+
+.canvasBorder {
+    border: 1px solid black;
+    vertical-align: top;
+}

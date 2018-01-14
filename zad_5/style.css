@@ -1,0 +1,35 @@
+body {
+
+}
+
+.guziki-menu {
+	width: 155px;
+	height: 50px;
+}
+
+.guzik {
+    background-color: white;
+	border: none;
+	width: 10px;
+	height: 10px;
+	padding: 0px;
+	display: block;
+	margin: none;
+	float: left;
+}
+
+.table {
+	border: 1px solid black;
+	width:500px;
+	height: 500px;
+	
+}
+
+.tr {
+	clear: both;
+}
+
+.plansza {
+	
+	display: inline;
+}

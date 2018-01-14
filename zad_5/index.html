@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="../comm/jquery-3.2.1.js"></script>
+    <script src="Main.js"></script>
+    <meta name="author" content="Patryk Bieszke (patryq)">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Content-Language" content="pl">
+    <meta name="Description" content="Hopfield - SPLA">
+    <title>Sieci Neuronowe - zadanie 5</title>
+</head>
+
+<body>
+
+    <button class="guziki-menu" id="clear" onclick="czysc()">WYCZYŚĆ</button>
+    <button class="guziki-menu" id="hell" onclick="wczytajBPRD(BPRDPixels)">BPRD</button>
+    <button class="guziki-menu" id="hell" onclick="wczytajDeadpoola(deadpoolPixels)">Deadpool</button>
+    <button class="guziki-menu" id="hell" onclick="wczytajSpidera(spiderManPixels)">Spider-Man</button>
+    <button class="guziki-menu" id="hell" onclick="wczytajHellboya(hellboyPixels)">Hellboy</button>
+
+    <table style="border-spacing: 50px;">
+        <tr>
+            <td>
+                <div class="table" data-bind="foreach: buttons">
+                    <div class="tr" data-bind="foreach: row">
+                        <button class="guzik" data-bind="attr: {'id': 'button' + idx}, click: function(data, event) { zaznaczPrzyciski(idx); return; }"></button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <button class="guziki-menu" id="hell" onclick="zaszum()">ZASZUM</button>
+            </td>
+            <td>
+                <button class="guziki-menu" id="zbiorUczenia" onclick="dodajDoZbioruUczenia()">DODAJ DO ZBIORU UCZENIA</button>
+            </td>
+            <td>
+                <button class="guziki-menu" id="czyscZbiorUczenia" onclick="czyscZbiorUczenia()">WYCZYŚĆ ZBIÓR UCZENIA</button>
+            </td>
+            <td>
+                <button class="guziki-menu" id="czyscZbiorUczenia" onclick="odSzum()">ODSZUM</button>
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+
+</html>
