@@ -1,12 +1,16 @@
-var canvas, ctx, pointsNumber, getNumPoints, draw, clear;
+var canvas, ctx, pointsNumber, getNumPoints, draw, clear, center, range;
 
 $(document).ready(function () {
     canvas = document.getElementById('canvasBoard');
     ctx = canvas.getContext("2d");
 
     getNumPoints = function () {
-        pointsNumber = Number(document.getElementById('numberPoints').value);;
-
+        pointsNumber = Number(document.getElementById('numberPoints').value);
+        centerPoints = {
+            x: Number(document.getElementById('centerX').value),
+            y: Number(document.getElementById('centerY').value)
+        };
+        range = Number(document.getElementById('centerRange').value);
     }
     clear = function() {
         losujPunkty();

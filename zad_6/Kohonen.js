@@ -1,29 +1,22 @@
 var punkty = new Array;
 var wagi = new Array;
 var liczbaWag = 81;
-var r = 250;
-var center = {x: 300, y: 300};
-var iterations = 100000;
+var r = 100;
+var iterations = 1000000;
+center = {x: 300, y: 300}
 
 var losujPunkty = function() {
     getNumPoints();
 	punkty = new Array;
 	wagi = new Array;
 	
-	for(var i = 0; i < pointsNumber; i++) {
-		//losuje promien od 1 do 200
-		
-		var randomR = (Math.random() * 2 - 1) * r + 1;
-		var randomX = Math.floor( (Math.random() * 2 - 1) * (randomR * 2) + (center.x - randomR));
-		var sqrtY = Math.floor(Math.sqrt(randomR * randomR - (randomX - center.x)*(randomX - center.x)));
-		var sign = Math.random() * 2 - 1;
-		if(sign < 0) sqrtY *= (-1);
-		var randomY = sqrtY + center.y;
-		
-		/*
-		var randomX = Math.floor(Math.random() * (r * 2) + (center.x - r));
-		var randomY = Math.floor(Math.random() * (r * 2) + (center.y - r));
-		*/
+	for(var i = 0; i < pointsNumber; i++) {		
+		var sign = Math.random() - 0.5;
+		sign = sign > 0 ? 1 : -1
+		var randomX = centerPoints.x + (sign * range * Math.random() ); 
+		sign = Math.random() - 0.5;
+		sign = sign > 0 ? 1 : -1
+		var randomY = centerPoints.y + (sign * range * Math.random() );
 		punkty.push({x: randomX, y: randomY}); 
 	}
 }
@@ -75,15 +68,11 @@ var rysujWagi = function() {
 	}
 }
 
-var rozkladaj = function(count) {
-	rozkladajCall(0);
-}
 
-var rozkladajCall = function(iteration) {
+var rozkladaj = function(iteration) {
 	iteration++;
 	
 	if(iteration >= iterations) return;
-		var t = iteration;
 		var index = Math.floor(Math.random() * pointsNumber);
 		var currX = punkty[index].x;
 		var currY = punkty[index].y;
@@ -98,18 +87,39 @@ var rozkladajCall = function(iteration) {
 				minDis = len;
 			}
 		}
-		var alf = alfa(t);
-		var xWaga = wagi[minDisIndex].x;
-		var yWaga = wagi[minDisIndex].y;
-		wagi[minDisIndex].x = xWaga + alf * (currX - xWaga);
-        wagi[minDisIndex].y = yWaga + alf * (currY - yWaga);
-        if(iteration % 50 === 0) {
+		let alf = alfa(iteration);
+		przeliczWagi(minDisIndex, alf, currX, currY);
+		
+        if(iteration % 500 === 0) {
             draw();
-            setTimeout(rozkladajCall, 10, iteration);
+            setTimeout(rozkladaj, 1, iteration);
         } else {
-            rozkladajCall(iteration);
+            rozkladaj(iteration);
         }
 	
+}
+
+var przeliczWagi = function(waga, alfa, currX, currY){
+	przeliczWage(waga, alfa, currX, currY);
+	if(waga - 1 > 0){
+		przeliczWage(waga-1, alfa, currX, currY);
+	}
+	if(waga + 1 < 81){
+		przeliczWage(waga+1, alfa, currX, currY);
+
+	}
+	if(waga - 9 > 0){
+		przeliczWage(waga - 9, alfa, currX, currY);
+	}
+	if(waga + 9 < 81){
+		przeliczWage(waga + 9, alfa, currX, currY);
+	}
+}
+var przeliczWage = function(waga, alfa, currX, currY){
+	let xWaga = wagi[waga].x;
+	let yWaga = wagi[waga].y;
+	wagi[waga].x = xWaga + alfa * (currX - xWaga);
+	wagi[waga].y = yWaga + alfa * (currY - yWaga);
 }
 
 var odleglosc = function(a, b, c, d) {
